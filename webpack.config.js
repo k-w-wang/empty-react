@@ -9,19 +9,19 @@ module.exports = {
         app: './src/index.tsx',
     },
     devtool: 'inline-source-map',
-    // devServer: {
-    //     // contentBase: path.resolve(__dirname, './dist'),
-    //     host: 'localhost',      // 默认是localhost
-    //     port: 3000,             // 端口
-    //     open: true,             // 自动打开浏览器
-    //     hot: true,               // 开启热更新
-    //     // proxy: {
-    //     //     '/index': {
-    //     //         target: 'https://www.bilibili.com',
-    //     //         changeOrigin: true,
-    //     //     },
-    //     // },
-    // },
+    devServer: {
+        // contentBase: path.resolve(__dirname, './dist'),
+        host: 'localhost',      // 默认是localhost
+        port: 3000,             // 端口
+        open: true,             // 自动打开浏览器
+        hot: true,               // 开启热更新
+        proxy: {
+            '/index': {
+                target: 'https://www.bilibili.com',
+                changeOrigin: true,
+            },
+        },
+    },
     output: {
         path: path.resolve(__dirname, './dist'),
         filename: '[name].bundle.js',
@@ -65,19 +65,17 @@ module.exports = {
                 test: /\.(woff(2)?|eot|ttf|otf|svg|)$/,
                 type: 'asset/inline',
             },
-            // CSS, PostCSS, and Sass
+            // less
             {
-                test: /\.(scss|css)$/,
-                use: ['style-loader', {
-                    loader: 'css-loader',
-                    options: {
-                        importLoaders: 1,
-                    },
-                }, 'postcss-loader'],
+                test: /\.(less|css)$/i,
+                use: [
+                  // compiles Less to CSS
+                  'style-loader',
+                  'css-loader',
+                  'less-loader',
+                  'postcss-loader',
+                ],
             },
         ],
     },
-    // devServer: {
-    //     contentBase: './dist'
-    // },
 }
