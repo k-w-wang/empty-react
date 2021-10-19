@@ -10,6 +10,13 @@ module.exports = {
     },
     devtool: 'inline-source-map',
     devServer: {
+        client: {
+            logging: 'info',
+            overlay: {
+                errors: true,
+                warnings: false,
+              },
+        },
         // contentBase: path.resolve(__dirname, './dist'),
         host: 'localhost',      // 默认是localhost
         port: 3000,             // 端口
@@ -69,11 +76,11 @@ module.exports = {
             {
                 test: /\.(less|css)$/i,
                 use: [
-                  // compiles Less to CSS
-                  'style-loader',
-                  'css-loader',
-                  'less-loader',
-                  'postcss-loader',
+                    // compiles Less to CSS
+                    'style-loader',
+                    'css-loader',
+                    'less-loader',
+                    'postcss-loader',
                 ],
             },
         ],
