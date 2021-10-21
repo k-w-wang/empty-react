@@ -15,7 +15,7 @@ module.exports = {
             overlay: {
                 errors: true,
                 warnings: false,
-              },
+            },
         },
         // contentBase: path.resolve(__dirname, './dist'),
         host: 'localhost',      // 默认是localhost
@@ -51,6 +51,7 @@ module.exports = {
                 use: 'ts-loader',
                 exclude: /node_modules/,
             },
+
             // JavaScript
             {
                 test: /\.m?js$/,
@@ -77,10 +78,24 @@ module.exports = {
                 test: /\.(less|css)$/i,
                 use: [
                     // compiles Less to CSS
-                    'style-loader',
-                    'css-loader',
-                    'less-loader',
-                    'postcss-loader',
+                    {
+                        loader: 'style-loader',
+                    },
+                    {
+                        loader: 'css-loader',
+                    },
+                    {
+                        loader: 'less-loader',
+                        options: {
+                            lessOptions: {
+                               javascriptEnabled: true
+                            } 
+                          }
+                       
+                    },
+                    {
+                        loader: 'postcss-loader',
+                    },
                 ],
             },
         ],
