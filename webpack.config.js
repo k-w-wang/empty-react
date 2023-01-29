@@ -36,7 +36,7 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            title: '铁木真大屏展示',
+            title: 'react空白模版', // 此处修改标题
             template: path.resolve(__dirname, './public/index.html'),
             filename: 'index.html',
         }),
